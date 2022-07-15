@@ -9,17 +9,20 @@ const jwt = require("jsonwebtoken")
 exports.signup = (req, res, next) => {
     const { email, password } = req.body
 
-    let regPassword = regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/) //special/number/capital
+    //securisation mot de passe
+    //let regPassword = regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/) //special/number/capital
+//
+    //if (!regPassword.test(password.value)){
+    //    return res.status(400).json({ message: 'mot de passe non securisé veuillez mettre un mot de passe de minimun 6 caractére une majuscule une minuscule des chiffres et un caractere  special '})
+    //}
 
-    if (!regPassword.test(password.value)){
-        return res.status(400).json({ message: 'mot de passe non securisé veuillez mettre un mot de passe de minimun 6 caractére une majuscule une minuscule des chiffres et un caractere  special '})
-    }
+    
     // Validation des données reçues
     if(!email || !password){
         return res.status(400).json({ message: 'Bad email or password'})
     }
 
-    //securisation mot de passe
+
 
     // Hashage du mot de passe utilisateur
     bcrypt.hash(req.body.password, parseInt(process.env.BRYPT_SALT_ROUND))
