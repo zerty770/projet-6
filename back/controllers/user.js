@@ -14,6 +14,8 @@ exports.signup = (req, res, next) => {
         return res.status(400).json({ message: 'Bad email or password'})
     }
 
+    //securisation mot de passe
+
     // Hashage du mot de passe utilisateur
     bcrypt.hash(req.body.password, parseInt(process.env.BRYPT_SALT_ROUND))
       .then((hash) => {
